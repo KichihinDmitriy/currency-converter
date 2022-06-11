@@ -1,36 +1,24 @@
-import React, {Component} from 'react';
+import { useEffect, useState } from 'react';
+import { AppHeader } from './AppHeader';
+import { HeaderExchangeRates } from './HeaderExchangeRates';
+import { CurrencyConversion } from './CurrencyConversion';
+import { fetchAllCurrency } from '../api';
 
-import CurrencyConversion from './CurrencyConversion';
+import './App.css';
 
-export default class App extends Component {
+export const App = () => {
 
-    getCurrentExchangeRate = () => {
+    const [allCurrency, setAllCurrency] = useState({});
 
-        const baseUrl = 'https://api.privatbank.ua/p24api/exchange_rates?json&date=01.12.2014';
+    useEffect(() => {
+        fetchAllCurrency().then(setAllCurrency)
+    }, [])
 
-        const logSuccess = data => {
-            console.log(data);
-        }
-
-        const logError = err => {
-            console.warn(err);
-        };
-        
-        fetch(baseUrl)
-        .then(response => {
-            if(response.ok) return response.json();
-            throw new Error('Error ' + response.statusText);
-        })
-        .then(logSuccess)
-        .catch(logError)
-    }
-
-    render() {
-
-        return (
-            <div>
-                <CurrencyConversion />
-            </div>
-        )
-    }
+    return (
+        <div className="app-container">
+            <AppHeader />
+            <HeaderExchangeRates allCurrency={allCurrency} />
+            <CurrencyConversion allCurrency={allCurrency} />
+        </div>
+    )
 }
