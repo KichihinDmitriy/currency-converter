@@ -1,12 +1,9 @@
 export const HeaderExchangeRates = ({allCurrency}) => {
 
-    if(!allCurrency.results) {
-        return null
-    }
-
     return (
         <div>
-            <div>1 {allCurrency.base} is equevalent to {allCurrency.results.USD} USD / {allCurrency.results.EUR} EUR</div>
+            <div>
+                <span className="text-primary">1</span> {allCurrency.base} is equevalent to <span className="text-primary">{allCurrency.results.USD}</span> USD / <span className="text-primary">{allCurrency.results.EUR}</span> EUR</div>
         </div>
     )
 }

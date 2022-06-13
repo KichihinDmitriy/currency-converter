@@ -14,8 +14,12 @@ export const App = () => {
         fetchAllCurrency().then(setAllCurrency)
     }, [])
 
+    if(!allCurrency.results) {
+        return null
+    }
+
     return (
-        <div className="app-container">
+        <div className="app-container border border-primary">
             <AppHeader />
             <HeaderExchangeRates allCurrency={allCurrency} />
             <CurrencyConversion allCurrency={allCurrency} />
