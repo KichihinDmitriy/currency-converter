@@ -28,8 +28,6 @@ export const CurrencyConversion = ({allCurrency}) => {
             })
     }, [form.CURRENCY_AMOUNT_1, form.SELECTED_CURRENCY_1, form.CURRENCY_AMOUNT_2, form.SELECTED_CURRENCY_2])
 
-    // [...Object.values(form)]
-
         return (
             <div>
                 <form>
